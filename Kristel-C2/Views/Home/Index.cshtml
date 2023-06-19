@@ -1,0 +1,39 @@
+﻿@model List<Kristel_C2.Models.SupportTicket>
+
+<div style="margin:auto">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numero de ticket</th>
+                <th>Asunto</th>
+                <th>Descripcion</th>
+                <th>Fecha de ingreso</th>
+                <th>Terminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var supportTicket in Model)
+            {
+                <tr>
+                    <td>@supportTicket.TicketNumber</td>
+                    <td>@supportTicket.Subject</td>
+                    <td>@supportTicket.Description</td>
+                    <td>@supportTicket.CreatedDate</td>
+                    <td>
+                        @using (Html.BeginForm("Cierre", "Home"))
+                        {
+                            <form action="/Home/Resuelto"method="POST">
+                                <input type="hidden" name="ticketNum" value="@supportTicket.TicketNumber"/>
+                                @Html.Hidden("ticketNum", supportTicket.TicketNumber)
+                                <button type="submit" class="btn btn-primary btn-rounder">Terminar</button>
+                            </form>
+
+
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

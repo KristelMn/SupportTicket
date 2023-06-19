@@ -1,0 +1,30 @@
+﻿@model Kristel_C2.Models.SupportTicket
+
+<div class="card col-6" style="margin: auto; background-color: lavender;">
+
+    <div class="card-body">
+        <h3 class="card-title" style="color: black;">
+            Generar Ticket
+        </h3>
+
+
+        @using (Html.BeginForm("TicketGuardado", "Home", FormMethod.Post))
+        {
+            <div class="mb-3">
+                <label for="subject" class="form-label">OPERACION</label>
+                @Html.TextBoxFor(m => m.Subject,"OPERACION", new { @class = "form-control", id = "subject" })
+                @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">DETALLE</label>
+                @Html.TextBoxFor(m => m.Description,"DETALLE", new { @class = "form-control", id = "description", rows = "3" })
+                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+            </div>
+            <div class="bg-red-600-text-blue">
+                @Html.ValidationSummary()
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        }
+    </div>
+</div>
+
